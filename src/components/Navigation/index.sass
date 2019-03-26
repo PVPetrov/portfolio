@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Nova+Mono')
+.navigation
+  display: flex
+  justify-content: center
+  text-transform: uppercase
+  font-family: 'Nova Mono', monospace
+  font-weight: 600
+  font-size: 2rem
+  color: #fff
+  text-shadow: 0px 1px 1px #000, 5px 0px 10px #777777
+
+  a:link, a:hover, a:active, a:visited
+    text-decoration: none
+    color: inherit
+
+  .link
+    padding: 1rem
+    transition: all .5s ease-in-out
+    border-bottom: 3px solid transparent
+
+    &:hover
+      transform: scale(1.1)
+      text-shadow: 1px 1px #000, 10px 5px 10px #777777
+
+.link-active .link
+  transform: scale(1.1)
+  text-shadow: 0px 1px 1px #000, 10px 5px 10px #777777
+  color: #161616
