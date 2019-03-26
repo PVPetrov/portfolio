@@ -1,22 +1,32 @@
-import React, { lazy, Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { PureComponent } from 'react';
+import { Switch, Route, withRouter } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import Home from './Home';
+import Experience from './Experience';
+import Education from './Education';
+import About from './About';
 
-const Home = lazy(() => import('./Home'));
-const Experience = lazy(() => import('./Experience'));
-const Education = lazy(() => import('./Education'));
-const About = lazy(() => import('./About'));
+import './Router.css';
 
-const Router = () => {
-  return (
-    <Suspense fallback={<div style={{flex: '1 1 0', background: 'grey'}}>Loading</div>} >
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/experience" component={Experience} />
-        <Route path="/education" component={Education} />
-        <Route path="/about" component={About} />
-      </Switch>
-    </Suspense>
-  );
-}
+class Router extends PureComponent {
+  render(){
+    return (
+      <Route
+        render={({ location }) => (
+          <TransitionGroup>
+            <CSSTransition key={location.key} timeout={450} classNames="fade">
+              <Switch location={location}>
+                <Route exact path="/" component={Home} />
+                <Route path="/experience" component={Experience} />npm
+                <Route path="/education" component={Education} />
+                <Route path="/about" component={About} />
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
+        )}
+      />
+    );
+  }
+};
 
-export default Router;
+export default withRouter(Router);
